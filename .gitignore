@@ -1,5 +1,12 @@
 # Folders
 Archive
+/internal/*
+!/internal/builtins
+!/internal/cat
+!/internal/diff
+!/internal/echo
+!/internal/sleep
+!/internal/utils
 
 # Files
 main
