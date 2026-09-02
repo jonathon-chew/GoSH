@@ -4,11 +4,13 @@ import (
 	"fmt"
 	"slices"
 	"strings"
+
+	"github.com/jonathon-chew/go-sh/internal/utils"
 )
 
 func TYPE(user_input string) {
 	var binary = strings.Split(user_input, " ")[1]
-	binary_look_up, binary_path, err := utils.search_binaries(binary)
+	binary_look_up, binary_path, err := utils.Search_binaries(binary)
 	if err != nil {
 		fmt.Printf("%s: not found\n", binary)
 	}

@@ -19,11 +19,11 @@ func pathJoin(curr_path string, add_path string) string {
 	return fmt.Sprintf("%s%s%s", curr_path, string(os.PathSeparator), add_path)
 }
 
-func IsExecAny(mode os.FileMode) bool {
+func isExecAny(mode os.FileMode) bool {
 	return mode&0111 != 0
 }
 
-func search_binaries(binary string) (string, string, error) {
+func Search_binaries(binary string) (string, string, error) {
 
 	var path = os.Getenv("PATH")
 	if path == "" {
@@ -36,7 +36,7 @@ func search_binaries(binary string) (string, string, error) {
 			if err != nil {
 				return "", "", fmt.Errorf("Unable to get information on the binary")
 			}
-			if IsExecAny(file_info.Mode()) {
+			if isExecAny(file_info.Mode()) {
 				return binary, pathJoin(folder, binary), nil
 			}
 		}
@@ -44,7 +44,7 @@ func search_binaries(binary string) (string, string, error) {
 	return "", "", fmt.Errorf("Unable to find the binary")
 }
 
-func writeHistory(command string) {
+func WriteHistory(command string) {
 	fp, err := os.Open("$HOME/.gosh_history")
 	if err != nil {
 		os.Exit(1)
@@ -53,7 +53,7 @@ func writeHistory(command string) {
 	fp.Write([]byte(command))
 }
 
-func runExternalBinary(executable string, args []string) {
+func RunExternalBinary(executable string, args []string) {
 	cmd := exec.Command(executable, args...)
 	cwd, err := os.Getwd()
 	if err != nil {
