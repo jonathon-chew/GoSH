@@ -45,9 +45,14 @@ func Search_binaries(binary string) (string, string, error) {
 }
 
 func WriteHistory(command string) {
+
+	if _, ok := os.Lstat("$HOME/.gosh_history"); ok != nil {
+		return
+	}
+
 	fp, err := os.Open("$HOME/.gosh_history")
 	if err != nil {
-		os.Exit(1)
+		fmt.Println("[Error]: ", err.Error())
 	}
 
 	fp.Write([]byte(command))
