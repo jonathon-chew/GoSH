@@ -2,7 +2,6 @@ package cat
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"strconv"
 	"strings"
@@ -13,7 +12,7 @@ func moreCommandLineFlags(array []string) bool {
 	if len(array) > 2 {
 		for _, str := range array[1:] {
 			if strings.Contains(str, "-") {
-				log.Print(str)
+				// log.Print(str)
 				return true
 			}
 		}
@@ -46,12 +45,12 @@ func cmd(arguments []string) {
 	for numberOfArguments, argument := range arguments {
 		switch argument {
 		case "-b":
-			log.Print("Argument was -b...")
+			// log.Print("Argument was -b...")
 			if numberOfArguments == len(arguments) {
 				for _, file := range files {
 					fileContents, ErrReadFile := os.ReadFile(file)
 					if ErrReadFile != nil {
-						log.Fatalf("[ERROR]: %s", ErrReadFile)
+						fmt.Printf("[ERROR]: %s\n", ErrReadFile)
 					}
 					newFileContents := printWithLineNumbersNoBlanks(string(fileContents))
 					fmt.Print(strings.Join(newFileContents, "\n"))
@@ -64,7 +63,7 @@ func cmd(arguments []string) {
 				for _, file := range files {
 					fileContents, ErrReadFile := os.ReadFile(file)
 					if ErrReadFile != nil {
-						log.Fatalf("[ERROR]: %s", ErrReadFile)
+						fmt.Printf("[ERROR]: %s\n", ErrReadFile)
 					}
 					newFileContents := printWithLineNumbersNoBlanks(string(fileContents))
 					fmt.Print(strings.Join(newFileContents, "\n"))
@@ -72,19 +71,19 @@ func cmd(arguments []string) {
 			}
 
 		case "-e":
-			log.Print("Argument was -e...")
+			// log.Print("Argument was -e...")
 			if numberOfArguments == len(arguments) {
-				log.Print("Number of arguments seen matches total arguments...")
+				// log.Print("Number of arguments seen matches total arguments...")
 				for _, file := range files {
 					fileContents, ErrReadFile := os.ReadFile(file)
 					if ErrReadFile != nil {
-						log.Fatalf("[ERROR]: %s", ErrReadFile)
+						fmt.Printf("[ERROR]: %s\n", ErrReadFile)
 					}
 					newFileContents := printWithDollarAtTheEnd(string(fileContents))
 					fmt.Print(newFileContents)
 				}
 			} else if numberOfArguments != len(arguments) && !moreCommandLineFlags(arguments[numberOfArguments:]) {
-				log.Print("Number of arguments seen does not matches total arguments and there are no more command line arguments...")
+				// log.Print("Number of arguments seen does not matches total arguments and there are no more command line arguments...")
 				for _, file := range arguments[numberOfArguments+1:] {
 					files = append(files, file)
 				}
@@ -92,25 +91,25 @@ func cmd(arguments []string) {
 				for _, file := range files {
 					fileContents, ErrReadFile := os.ReadFile(file)
 					if ErrReadFile != nil {
-						log.Fatalf("[ERROR]: %s", ErrReadFile)
+						fmt.Printf("[ERROR]: %s\n", ErrReadFile)
 					}
 					newFileContents := printWithDollarAtTheEnd(string(fileContents))
 					fmt.Print(newFileContents)
 				}
 			} else if moreCommandLineFlags(arguments[numberOfArguments:]) {
-				log.Print("There are more command line flags...")
+				// log.Print("There are more command line flags...")
 			}
 
 		case "-l":
-			log.Print("Argument was -l...")
+			fmt.Println("Argument was -l...")
 			continue
 		case "-n":
-			log.Print("Argument was -n...")
+			// log.Print("Argument was -n...")
 			if numberOfArguments == len(arguments) {
 				for _, file := range files {
 					fileContents, ErrReadFile := os.ReadFile(file)
 					if ErrReadFile != nil {
-						log.Fatalf("[ERROR]: %s", ErrReadFile)
+						fmt.Printf("[ERROR]: %s\n", ErrReadFile)
 					}
 					newFileContents := printWithLineNumbers(string(fileContents))
 					fmt.Print(strings.Join(newFileContents, "\n"))
@@ -118,12 +117,12 @@ func cmd(arguments []string) {
 			}
 
 		case "-s":
-			log.Print("Argument was -s...")
+			// log.Print("Argument was -s...")
 			if numberOfArguments == len(arguments) {
 				for _, file := range files {
 					fileContents, ErrReadFile := os.ReadFile(file)
 					if ErrReadFile != nil {
-						log.Fatalf("[ERROR]: %s", ErrReadFile)
+						fmt.Printf("[ERROR]: %s\n", ErrReadFile)
 					}
 					newFileContents := printExcludeMultipleEmptyLines(string(fileContents))
 					fmt.Print(strings.Join(newFileContents, "\n"))
@@ -147,7 +146,7 @@ func cmd(arguments []string) {
 				for _, file := range files {
 					fileContents, ErrReadFile := os.ReadFile(file)
 					if ErrReadFile != nil {
-						log.Fatalf("[ERROR]: %s", ErrReadFile)
+						fmt.Printf("[ERROR]: %s\n", ErrReadFile)
 					}
 					fmt.Print(string(fileContents))
 				}
@@ -207,11 +206,11 @@ func printExcludeMultipleEmptyLines(file string) []string {
 }
 
 func Cat() {
-	log.Print("Running cat...")
+	// log.Print("Running cat...")
 	if len(os.Args) > 1 {
-		log.Print("More than one argument found...")
+		// log.Print("More than one argument found...")
 		cmd(os.Args[1:])
 	} else {
-		log.Fatal("[ERROR]: No file")
+		fmt.Println("[ERROR]: No file")
 	}
 }
