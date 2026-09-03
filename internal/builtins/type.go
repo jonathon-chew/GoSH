@@ -5,7 +5,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/jonathon-chew/go-sh/internal/utils"
+	"github.com/jonathon-chew/GoSH/internal/utils"
 )
 
 func TYPE(user_input string) {
