@@ -1,3 +1,3 @@
-module github.com/jonathon-chew/go-sh
+module github.com/jonathon-chew/GoSH
 
 go 1.27.0

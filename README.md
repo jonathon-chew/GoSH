@@ -1,6 +1,6 @@
-# go-sh
+# GoSH
 
-`go-sh` is a small shell written in Go.
+`GoSH` is a small shell written in Go.
 
 I built it to understand what a command-line shell actually has to do: read user input, recognise built-in commands, look up binaries on `PATH`, run external programs, and keep track of the current working directory.
 
@@ -29,26 +29,26 @@ Current built-ins:
 From the project root:
 
 ```bash
-go run ./cmd/go-sh
+go run ./cmd/GoSH
 ```
 
 Build a binary:
 
 ```bash
-go build ./cmd/go-sh
+go build ./cmd/GoSH
 ```
 
 Then run it:
 
 ```bash
-./go-sh
+./GoSH
 ```
 
 ## Example Session
 
 ```text
 $ pwd
-/path/to/go-sh
+/path/to/GoSH
 $ echo hello
  hello
 $ type go
@@ -59,7 +59,7 @@ $ exit
 ## Project Structure
 
 ```text
-cmd/go-sh/          application entry point
+cmd/GoSH/          application entry point
 internal/cli/       reserved for future CLI/shared shell logic
 scripts/            helper scripts used across the project
 ```
