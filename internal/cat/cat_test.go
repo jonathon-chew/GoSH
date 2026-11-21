@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"testing"
 )
 
 const (
@@ -17,7 +18,7 @@ func runCommand(option string) {
 	os.Args = []string{os.Args[0]}
 }
 
-func Test_cat() {
+func Test_cat(t *testing.T) {
 
 	options := []string{"-b", "-e", "-l", "-n", "-s", "-t", "-u", "-v"}
 

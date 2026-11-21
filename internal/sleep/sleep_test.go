@@ -1,3 +1,5 @@
 package sleep
 
-func Test_sleep() {}
+import "testing"
+
+func Test_sleep(t *testing.T) {}

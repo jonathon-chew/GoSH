@@ -1,6 +1,6 @@
 # GoSH
 
-`GoSH` is a small shell written in Go.
+`GoSH` is a small shell written in Go, with a growing set of Unix-style built-ins.
 
 I built it to understand what a command-line shell actually has to do: read user input, recognise built-in commands, look up binaries on `PATH`, run external programs, and keep track of the current working directory.
 
@@ -9,7 +9,7 @@ This is a learning project rather than a replacement for an everyday shell.
 ## What It Does
 
 - Starts an interactive prompt.
-- Supports a small set of built-in commands.
+- Supports built-in commands including `cd`, `echo`, `ls`, `pwd`, and `type`.
 - Searches the system `PATH` for executable binaries.
 - Runs external commands with arguments.
 - Keeps external command output separate from shell control flow.
@@ -60,13 +60,15 @@ $ exit
 
 ```text
 cmd/GoSH/          application entry point
-internal/cli/       reserved for future CLI/shared shell logic
+    internal/builtins/  built-in command implementations
+    internal/ls/        directory listing support
+    internal/utils/     command lookup, execution, and history helpers
 scripts/            helper scripts used across the project
 ```
 
 ## Current Status
 
-The shell currently handles a small interactive loop and a few core built-ins. External command execution works through Go's `os/exec` package.
+The shell currently handles an interactive loop, command history, directory listing, several built-ins, and external command execution through Go's `os/exec` package. Input is currently split on spaces, so quoted arguments are not yet handled like a full POSIX shell.
 
 The next useful improvements would be:
 

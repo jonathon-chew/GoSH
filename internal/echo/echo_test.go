@@ -1,3 +1,5 @@
 package echo
 
-func Test_echo() {}
+import "testing"
+
+func Test_echo(t *testing.T) {}
