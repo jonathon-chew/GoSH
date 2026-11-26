@@ -193,9 +193,9 @@ func printWithLineNumbers(file string) []string {
 func printExcludeMultipleEmptyLines(file string) []string {
 
 	var filePrint []string
-	splitFile := strings.Split(file, "\n")
+	splitFile := strings.SplitSeq(file, "\n")
 
-	for _, line := range splitFile {
+	for line := range splitFile {
 		if line != "\n" && line != "" {
 			filePrint = append(filePrint, line)
 		}
